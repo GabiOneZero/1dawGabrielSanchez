@@ -68,10 +68,30 @@ public class Carton {
 
             }
         }
-        
-        
+
     }
 
-    
+    public void imprimirCarton() {
+
+        for (int[] aux : this.numerosCarton) {
+            for (int i : aux) {
+
+                switch (i) {
+
+                    case 0:
+                        System.out.print(" \t");
+                        break;
+                    case -1:
+                        System.out.print("X\t");
+                        break;
+                    default:
+                        System.out.print(i + "\t");
+                        break;
+                }
+            }
+            System.out.println("");
+        }
+
+    }
 
 }
