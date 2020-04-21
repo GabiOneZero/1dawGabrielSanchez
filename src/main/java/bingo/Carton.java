@@ -16,37 +16,62 @@ public class Carton {
     private int[][] numerosCarton;
 
     public Carton() {
-        this.numerosCarton = numerosCarton;
+        this.numerosCarton = new int[3][9];
+        generarCarton();
     }
 
-    public void generarCarton() {
+    private void generarCarton() {
         Random varRandom = new Random();
         int nuevoNumero;
+        int[] filaAnterior = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+        for (int i = 0; i < this.numerosCarton.length; i++) { //FILAS
 
-        for (int i = 0; i < this.numerosCarton.length; i++) {
+            for (int j = 0; j < this.numerosCarton[i].length; j++) { //COLUMNAS
 
-            for (int j = 0; j < this.numerosCarton[i].length; j++) {
-
-                switch (i) {
+                switch (j) {
                     case 0:
-                        nuevoNumero = varRandom.nextInt(9) + 1;
+                        if (filaAnterior[j] == 9) {
+                            this.numerosCarton[i][j] = 0;
+                            break;
+                        }
+                        do {
+                            nuevoNumero = varRandom.nextInt(9) + 1;
+                        } while (nuevoNumero <= filaAnterior[j]);
+                        filaAnterior[j] = nuevoNumero;
+                        this.numerosCarton[i][j] = nuevoNumero;
                         break;
+
                     case 8:
-                        nuevoNumero = varRandom.nextInt(11) + 80;
+                        if (filaAnterior[j] == 90) {
+                            this.numerosCarton[i][j] = 0;
+                            break;
+                        }
+                        do {
+                            nuevoNumero = varRandom.nextInt(11) + 80;
+                        } while (nuevoNumero <= filaAnterior[j] || nuevoNumero == 90);
+                        filaAnterior[j] = nuevoNumero;
+                        this.numerosCarton[i][j] = nuevoNumero;
                         break;
+
                     default:
-                        nuevoNumero = varRandom.nextInt(10) + i * 10;
+                        if (filaAnterior[j] == ((j * 10) + 9)) {
+                            this.numerosCarton[i][j] = 0;
+                            break;
+                        }
+                        do {
+                            nuevoNumero = varRandom.nextInt(10) + (j * 10);
+                        } while (nuevoNumero <= filaAnterior[j]);
+                        filaAnterior[j] = nuevoNumero;
+                        this.numerosCarton[i][j] = nuevoNumero;
                         break;
                 }
-//                if (columna.contains(bola)) {
-//                    j--;
-//                } else {
-//                    numeros[j][i] = bola;
-//                    marcados[j][i] = false;
-//                    columna.add(bola);
-//                }
+
             }
         }
+        
+        
     }
+
+    
 
 }
