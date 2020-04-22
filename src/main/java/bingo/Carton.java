@@ -233,6 +233,21 @@ public class Carton {
         }
     }
     
+    
+    //Se comprueba si existe línea
+    //@params - la línea que queremos comprobar
+    //@return - si existe línea o no
+    public boolean comprobarSiLinea(int linea){
+        //Recorremos toda la línea y vamos comrpobando que todos los espacios esté ocupados 
+        //por un -1 (osea que estén "tachados")
+        for (int i = 0; i < this.numerosCarton[0].length; i++) {
+            if(this.numerosCarton[linea][i] != -1){
+                return false;
+            }
+        }
+        return true;
+    }
+    
 //Imrpimimos los números guardados en el cartón
 //y le damos formato
 
