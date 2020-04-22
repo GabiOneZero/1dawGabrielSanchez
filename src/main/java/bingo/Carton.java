@@ -218,6 +218,21 @@ public class Carton {
         //por tanto daremos por válido el cartón y devolvemos true
         return true;
     }
+    
+    //Este método tacha (convierte en -1) en el cartón los números de las bolas que salgan
+    //@param - número dado, correspondiente a la bola sacada
+    public void tacharCasilla(int bola){
+        //Recorremos el cartón para buscar el número
+        for (int i = 0; i < this.numerosCarton.length; i++) {
+            for (int j = 0; j < this.numerosCarton[i].length; j++) {
+                
+                if(this.numerosCarton[i][j] == bola){
+                    this.numerosCarton[i][j] = -1;
+                }
+            }
+        }
+    }
+    
 //Imrpimimos los números guardados en el cartón
 //y le damos formato
 
