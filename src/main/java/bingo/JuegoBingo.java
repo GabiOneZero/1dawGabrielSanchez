@@ -12,24 +12,31 @@ package bingo;
 public class JuegoBingo {
 
     public static void main(String[] args) {
-
+        //Creamos el bombo y el cartón
         Bombo bombo = new Bombo();
         Carton carton = new Carton();
 
+        //Variable que necesitaremos
         int bolaSacada;
         int turno = 1;
+        
+        //Comenzamos enseñando el cartón
         System.out.println("Este es su cartón:");
-
         carton.imprimirCarton();
 
+        //Introducimos todos los sucesos de un turno dentro de un bucle DO-WHILE, que se repetirá hasta que se cante BINGO
         do {
+            
+            //SACAR BOLA
             System.out.println("**************************TURNO " + turno + "********************************");
             bolaSacada = bombo.sacarBola();
             System.out.println("Ha salido el número: " + bolaSacada);
 
+            //TACHAR CASILLA
             if (carton.tacharCasilla(bolaSacada)) {
                 System.out.println("Se ha tachado el número " + bolaSacada);
 
+                //COMPROBAR LINEAS O BINGO
                 if (carton.comprobarSiLinea(0)) {
                     System.out.println("LINEA - en la línea: " + 1);
 
@@ -52,8 +59,10 @@ public class JuegoBingo {
                 System.out.println("No hubo suerte con esta bola");
             }
 
+            //ENSEÑAR CARTÓN MARCADO
             carton.imprimirCarton();
 
+            //AVANZAR TURNO Y REPETIR
             turno++;
             System.out.println("******************************************************************");
         } while (!carton.comprobarSiBingo());
