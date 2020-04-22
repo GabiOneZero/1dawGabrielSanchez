@@ -28,7 +28,7 @@ public class Bombo {
     
     //Rellena el array de bolas con un bucle for con números del 1 al 90 que
     //representarán las bolas del bombo
-    public void llenarBombo(){
+    private void llenarBombo(){
         for (int i = 0; i < this.bolas.length; i++) {
             this.bolas[i] = i + 1;
         }
@@ -38,15 +38,16 @@ public class Bombo {
     //Y la posición correspondiente al número obtenido lo cambiamos por 0
     //simulando que esta bola ya no está en el bombo y devuelve la bola en cuestión
     public int sacarBola(){
-        Random varRandom = new Random();        
+        Random varRandom = new Random();  
+        
         int bola = varRandom.nextInt(90) + 1;
-        this.bolas[bola] = 0;
+        this.bolas[bola - 1] = 0;
         
         return bola;
     }
     
     //Recorremos con un bucle for el array de bolas comprobando en cada iteración
-    //si hay número o hay un 0, cabiendo así el número de bolas restantes
+    //si hay número o hay un 0, sabiendo así el número de bolas restantes
     public int saberNumeroBolas(){
         int numeroBolas = 0;
         
