@@ -12,56 +12,52 @@ package bingo;
 public class JuegoBingo {
 
     public static void main(String[] args) {
-        
+
         Bombo bombo = new Bombo();
         Carton carton = new Carton();
-        
+
         int bolaSacada;
-        
+        int turno = 1;
         System.out.println("Este es su cartón:");
-       
+
         carton.imprimirCarton();
-        
-        do{
+
+        do {
+            System.out.println("**************************TURNO " + turno + "********************************");
             bolaSacada = bombo.sacarBola();
             System.out.println("Ha salido el número: " + bolaSacada);
-            System.out.println("-------------");            
-            
-            if(carton.tacharCasilla(bolaSacada)){
+
+            if (carton.tacharCasilla(bolaSacada)) {
                 System.out.println("Se ha tachado el número " + bolaSacada);
-                
-               if(carton.comprobarSiLinea(0)){
-                   System.out.println("LINEA - en la línea: " + 1);
-                   
-                   if(carton.comprobarSiBingo()){
-                       System.out.println("BINGO!!!!!!!!!!!");
-                       System.out.println("ENHORABUENA!!!!!");
-                       break;
-                   }
-               }
-               if(carton.comprobarSiLinea(1)){
-                   System.out.println("LINEA - en la línea: " + 2);
-                    if(carton.comprobarSiBingo()){
-                       System.out.println("BINGO!!!!!!!!!!!");
-                       System.out.println("ENHORABUENA!!!!!");
-                       break;
-                   }
-               }
-               if(carton.comprobarSiLinea(2)){
-                   System.out.println("LINEA - en la línea: " + 3);
-                    if(carton.comprobarSiBingo()){
-                       System.out.println("BINGO!!!!!!!!!!!");
-                       System.out.println("ENHORABUENA!!!!!");
-                       break;
-                   }
-               }
-            }else{
+
+                if (carton.comprobarSiLinea(0)) {
+                    System.out.println("LINEA - en la línea: " + 1);
+
+                }
+                if (carton.comprobarSiLinea(1)) {
+                    System.out.println("LINEA - en la línea: " + 2);
+
+                }
+                if (carton.comprobarSiLinea(2)) {
+                    System.out.println("LINEA - en la línea: " + 3);
+
+                }
+
+                if (carton.comprobarSiBingo()) {
+                    System.out.println("BINGO!!!!!!!!!!!");
+                    System.out.println("ENHORABUENA!!!!!");
+                    break;
+                }
+            } else {
                 System.out.println("No hubo suerte con esta bola");
             }
-            
+
             carton.imprimirCarton();
-            
-        }while(!carton.comprobarSiBingo());
+
+            turno++;
+            System.out.println("******************************************************************");
+        } while (!carton.comprobarSiBingo());
+
     }
-    
+
 }
