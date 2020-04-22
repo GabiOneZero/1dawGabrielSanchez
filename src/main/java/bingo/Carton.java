@@ -153,7 +153,43 @@ public class Carton {
         return huecos;
     }
 
-  
+    private boolean comprobarCarton() {
+        int huecosPorFila = 0;
+        int huecosPorColumna = 0;
+        boolean huecosCorrectos = true;
+
+        for (int i = 0; i < this.numerosCarton.length; i++) {
+
+            huecosPorFila = 0;
+            for (int j = 0; j < this.numerosCarton[0].length; j++) {
+
+                if (this.numerosCarton[i][j] == 0) {
+                    huecosPorFila++;
+                }
+
+            }
+            if (huecosPorFila != 4) {
+                return false;
+            }
+        }
+
+        for (int i = 0; i < this.numerosCarton[0].length; i++) {
+            huecosPorColumna = 0;
+            for (int j = 0; j < this.numerosCarton.length; j++) {
+
+                if (this.numerosCarton[j][i] == 0) {
+                    huecosPorColumna++;
+                }
+
+            }
+             if (huecosPorColumna != 1 && huecosPorColumna != 2) {
+            return false;
+        }
+       
+        }
+
+        return huecosCorrectos;
+    }
 //Imrpimimos los números guardados en el cartón
 //y le damos formato
 
