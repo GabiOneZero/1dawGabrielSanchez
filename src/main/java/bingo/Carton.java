@@ -5,6 +5,7 @@
  */
 package bingo;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -27,6 +28,18 @@ public class Carton {
     //Es un método "private" ya que solo querremos tener acceso a él desde la propia clase
     //para usarlo en el constructor
     private void generarCarton() {
+
+//        generarNumeros();
+//        generarHuecos();
+        do {
+            generarNumeros();
+            generarHuecos();
+
+        } while (!comprobarCarton());
+
+    }
+
+    private void generarNumeros() {
         Random varRandom = new Random();
 
         int nuevoNumero;  //El número que generaremos y colocaremos en cada posición del cartón
@@ -65,7 +78,10 @@ public class Carton {
                         //y controlando que sea mayor que el número superior
                         do {
                             nuevoNumero = varRandom.nextInt(11) + 80;
-                        } while (nuevoNumero <= filaAnterior[j] || nuevoNumero == 90);
+                            if (nuevoNumero == 90) {
+                                break;
+                            }
+                        } while (nuevoNumero <= filaAnterior[j]);
                         filaAnterior[j] = nuevoNumero; //Actualizamos los número de la fila anterior
                         this.numerosCarton[i][j] = nuevoNumero; //Puesto que es correcto establecemos el número en la posición del cartón correspondiente
                         break;
@@ -89,11 +105,58 @@ public class Carton {
 
             }
         }
-
     }
 
-    //Imrpimimos los números guardados en el cartón
-    //y le damos formato
+    private void generarHuecos() {
+        Random varRandom = new Random();
+
+        ArrayList<Integer> posicionesHuecos = new ArrayList<>();
+
+        for (int i = 0; i < this.numerosCarton.length; i++) {
+
+            posicionesHuecos.removeAll(posicionesHuecos);
+            do {
+
+                int huecoRandom = varRandom.nextInt(9);
+                if (!posicionesHuecos.contains(huecoRandom)) {
+                    posicionesHuecos.add(huecoRandom);
+                }
+            } while (posicionesHuecos.size() < 4);
+            int huecos = contarHuecos(i);
+
+            for (int j = 0; j < this.numerosCarton[0].length; j++) {
+
+                if (this.numerosCarton[i][j] != 0) {
+                    if (posicionesHuecos.contains(j)) {
+                        this.numerosCarton[i][j] = 0;
+                        huecos++;
+                    }
+                }
+
+                if (huecos >= 4) {
+                    break;
+                }
+
+            }
+
+        }
+    }
+
+    private int contarHuecos(int fila) {
+        int huecos = 0;
+
+        for (int i = 0; i < this.numerosCarton[0].length; i++) {
+            if (this.numerosCarton[fila][i] == 0) {
+                huecos++;
+            }
+        }
+        return huecos;
+    }
+
+  
+//Imrpimimos los números guardados en el cartón
+//y le damos formato
+
     public void imprimirCarton() {
 
         //Doble bucle for-each para recorrer la matriz
@@ -113,7 +176,7 @@ public class Carton {
                         break;
                 }
             }
-            System.out.println(""); //Salto después de cda lína imprimida para dar formato
+            System.out.println(""); //Salto después de cda lína para dar formato
         }
 
     }
