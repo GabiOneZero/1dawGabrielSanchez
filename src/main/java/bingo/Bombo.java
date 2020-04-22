@@ -40,14 +40,15 @@ public class Bombo {
     //@return - la bola que está en la posición seleccionada aleatoriamente
     public int sacarBola() {
         Random varRandom = new Random();
-        
+        int bolaSeleccionada;
         int bola;
         do {
             bola = varRandom.nextInt(90) + 1; //Escogemos aleatoriamente una posición
         } while (this.bolas[bola - 1] == 0); //Repetimos en caso de que esa bola ya haya salido anteriormente (su valor sea 0)
-        this.bolas[bola - 1] = 0;//Igualamos a 0 representando que la bola ha salido
-
-        return this.bolas[bola - 1]; 
+        
+        bolaSeleccionada = this.bolas[bola - 1];//Metemos en una variable la bola escogida aleatoriamente
+        this.bolas[bola - 1] = 0; //Igualamos a 0 representando que la bola ha salido
+        return bolaSeleccionada; 
     }
 
     //Recorremos con un bucle for el array de bolas comprobando en cada iteración
