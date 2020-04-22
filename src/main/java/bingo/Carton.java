@@ -248,6 +248,13 @@ public class Carton {
         return true;
     }
     
+    //Comprobamos si hay bingo o no
+    public boolean comprobarSiBingo(){
+        //En caso de que en las 3 líneas se hayan cantado línea, querrá decir que hay bingo
+        //por tanto devolverá true
+       return comprobarSiLinea(0) && comprobarSiLinea(1) &&  comprobarSiLinea(2);
+    }
+    
 //Imrpimimos los números guardados en el cartón
 //y le damos formato
 
