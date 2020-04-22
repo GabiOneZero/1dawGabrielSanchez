@@ -176,10 +176,9 @@ public class Carton {
         int huecosPorFila;
         int huecosPorColumna;
 
-        
         //Comprobamos primero todo el cartón por filas
         for (int i = 0; i < this.numerosCarton.length; i++) {
-            
+
             huecosPorFila = 0;//resetamos el contador para cada fila
             for (int j = 0; j < this.numerosCarton[0].length; j++) {
                 //Añadimos uno al contador por cada  hueco
@@ -197,7 +196,7 @@ public class Carton {
 
         //Comprobamos todo el cartón por columnas
         for (int i = 0; i < this.numerosCarton[0].length; i++) {
-            
+
             huecosPorColumna = 0; //reseteamos el contador en cada columna
             for (int j = 0; j < this.numerosCarton.length; j++) {
 
@@ -218,48 +217,49 @@ public class Carton {
         //por tanto daremos por válido el cartón y devolvemos true
         return true;
     }
-    
+
     //Este método tacha (convierte en -1) en el cartón los números de las bolas que salgan
     //@param - número dado, correspondiente a la bola sacada
-    public void tacharCasilla(int bola){
+    //@return - si se ha techado o no la casilla
+    public boolean tacharCasilla(int bola) {
         //Recorremos el cartón para buscar el número
         for (int i = 0; i < this.numerosCarton.length; i++) {
             for (int j = 0; j < this.numerosCarton[i].length; j++) {
-                
-                if(this.numerosCarton[i][j] == bola){
+
+                if (this.numerosCarton[i][j] == bola) {
                     this.numerosCarton[i][j] = -1;
+                    return true;
                 }
             }
         }
+        return false;
     }
-    
-    
+
     //Se comprueba si existe línea
     //@params - la línea que queremos comprobar
     //@return - si existe línea o no
-    public boolean comprobarSiLinea(int linea){
+    public boolean comprobarSiLinea(int linea) {
         //Recorremos toda la línea y vamos comrpobando que todos los espacios esté ocupados 
         //por un -1 (osea que estén "tachados")
         for (int i = 0; i < this.numerosCarton[0].length; i++) {
-            if(this.numerosCarton[linea][i] != -1){
+            if (this.numerosCarton[linea][i] != -1 && this.numerosCarton[linea][i] != 0) {
                 return false;
             }
         }
         return true;
     }
-    
+
     //Comprobamos si hay bingo o no
-    public boolean comprobarSiBingo(){
+    public boolean comprobarSiBingo() {
         //En caso de que en las 3 líneas se hayan cantado línea, querrá decir que hay bingo
         //por tanto devolverá true
-       return comprobarSiLinea(0) && comprobarSiLinea(1) &&  comprobarSiLinea(2);
+        return comprobarSiLinea(0) && comprobarSiLinea(1) && comprobarSiLinea(2);
     }
-    
+
 //Imrpimimos los números guardados en el cartón
 //y le damos formato
-
     public void imprimirCarton() {
-
+        System.out.println("....................................................................");
         //Doble bucle for-each para recorrer la matriz
         for (int[] aux : this.numerosCarton) {
             for (int i : aux) {
@@ -278,8 +278,9 @@ public class Carton {
                 }
             }
             System.out.println(""); //Salto después de cda lína para dar formato
-        }
 
+        }
+        System.out.println("....................................................................");
     }
 
 }
