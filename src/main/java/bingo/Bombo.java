@@ -12,6 +12,7 @@ import java.util.Random;
  * @author Gabriel
  */
 public class Bombo {
+
     //Atributo
     private int[] bolas;
 
@@ -25,40 +26,41 @@ public class Bombo {
     }
 
     //MÉTODOS 
-    
     //Rellena el array de bolas con un bucle for con números del 1 al 90 que
     //representarán las bolas del bombo
-    private void llenarBombo(){
+    private void llenarBombo() {
         for (int i = 0; i < this.bolas.length; i++) {
             this.bolas[i] = i + 1;
         }
     }
-    
+
     //Obtenemos un número aleatorio dentro del rango (1-90)
     //Y la posición correspondiente al número obtenido lo cambiamos por 0
     //simulando que esta bola ya no está en el bombo y devuelve la bola en cuestión
-    public int sacarBola(){
-        Random varRandom = new Random();  
-        
-        int bola = varRandom.nextInt(90) + 1;
+    public int sacarBola() {
+        Random varRandom = new Random();
+        int bola;
+        do {
+            bola = varRandom.nextInt(90) + 1;
+        } while (this.bolas[bola - 1] == 0);
         this.bolas[bola - 1] = 0;
-        
-        return bola;
+
+        return this.bolas[bola - 1];
     }
-    
+
     //Recorremos con un bucle for el array de bolas comprobando en cada iteración
     //si hay número o hay un 0, sabiendo así el número de bolas restantes
-    public int saberNumeroBolas(){
+    public int saberNumeroBolas() {
         int numeroBolas = 0;
-        
+
         for (int i = 0; i < this.bolas.length; i++) {
-            if(this.bolas[i] != 0){
+            if (this.bolas[i] != 0) {
                 numeroBolas++;
             }
-        }        
+        }
         return numeroBolas;
     }
-    
+
     //Setter & Getter
     public int[] getBolas() {
         return bolas;
@@ -73,7 +75,4 @@ public class Bombo {
         return "Bombo{" + "bolas=" + bolas + '}';
     }
 
-    
-    
-    
 }
