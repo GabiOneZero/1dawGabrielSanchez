@@ -108,5 +108,33 @@ public final class CartonAmericano extends Carton {
     }
     //======================TO STRING================================
 
-   
+    @Override
+    public String toString() {
+        String carton = "";
+        carton += "....................................................................\n";
+        
+        carton += "B\t" + "I\t" + "N\t" + "G\t" + "O\n";
+        
+        for (int[] aux : this.getMatriz()) {
+            for (int i : aux) {
+                //Dependiendo del valor actual imprimiremos una cosa u otra
+                switch (i) {
+                    case 0: //Equivale a un hueco, por tanto imprimimos un espacio en blanco
+                        carton += " \t";
+                        break;
+                    case -1: //Quiere decir que es un número que ha salido en el bombo y ha sido marcado, entonces lo representamos con una X
+                        carton += "X\t";
+                        break;
+                    default: //Por defecto se imprimirá en consola el número correspondiente
+                        carton += i + "\t";
+                        break;
+                }
+            }
+            carton += "\n"; //Salto después de cda lína para dar formato
+
+        }
+       carton += "....................................................................\n";
+       return carton;
+    
+    }
 }
