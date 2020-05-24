@@ -41,6 +41,17 @@ public abstract class Carton {
         return false;
         
     }
+    
     //==================GETTERS & SETTERS============================
+     public int[][] getMatriz() {
+        return matriz;
+    }
+
+    public void setMatriz(int[][] matriz) {
+        this.matriz = matriz;
+    }
+    
     //======================TO STRING================================
+
+   
 }
