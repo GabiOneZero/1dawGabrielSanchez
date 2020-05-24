@@ -74,7 +74,7 @@ public final class CartonAmericano extends Carton {
         for (int i = 0; i < COLUMNAS; i++) {
 
             do {
-                numero = varRandom.ints(minimo, 0, maximo).findFirst().getAsInt();
+                numero = varRandom.ints(minimo, maximo + 1).findFirst().getAsInt();
             } while (listaNumeros.contains(numero));
 
             listaNumeros.add(numero);
@@ -93,11 +93,10 @@ public final class CartonAmericano extends Carton {
     public void rellenarMatriz(int columna, int[] numeros) {
 
         for (int i = 0; i < FILAS; i++) {
-            for (int j = 0; j < COLUMNAS; j++) {
 
                 this.getMatriz()[i][columna] = numeros[i];
 
-            }
+            
         }
 
     }
