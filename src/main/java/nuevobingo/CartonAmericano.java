@@ -10,7 +10,10 @@ import java.util.Collections;
 import java.util.Random;
 
 /**
- *
+ *En esta clase también se comentó que era mejor no utilizar el patrón
+ * como parámetro en el constructor. Preferible que la clase use algún
+ * método para establecer el patrón internamente en el constructor
+ * 
  * @author Gabriel
  */
 public final class CartonAmericano extends Carton {
