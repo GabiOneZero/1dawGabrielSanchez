@@ -12,14 +12,14 @@ import java.util.List;
  *
  * @author Gabriel
  */
-public class BomboAmericano extends Bombo{
-    
+public class BomboAmericano extends Bombo {
+
     //======================ATRIBUTOS================================
     public static final int cantidadBolas = 90;
 
     //====================CONSTRUCTORES==============================
     public BomboAmericano() {
-        super();        
+        super();
         llenarBombo();
     }
 
@@ -27,12 +27,12 @@ public class BomboAmericano extends Bombo{
     @Override
     public void llenarBombo() {
         List lista = null;
-        
-         for (int i = 0; i < this.cantidadBolas; i++) {
+
+        for (int i = 0; i < this.cantidadBolas; i++) {
             lista.add(i);
-         }
-         Collections.shuffle(lista);
-         super.setListaBolas(lista);
+        }
+        Collections.shuffle(lista);
+        super.setListaBolas(lista);
 
     }
 
