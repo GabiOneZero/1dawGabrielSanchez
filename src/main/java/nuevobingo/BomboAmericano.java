@@ -5,6 +5,9 @@
  */
 package nuevobingo;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  *
  * @author Gabriel
@@ -16,12 +19,20 @@ public class BomboAmericano extends Bombo{
 
     //====================CONSTRUCTORES==============================
     public BomboAmericano() {
-
+        super();        
+        llenarBombo();
     }
 
     //=======================MÉTODOS=================================
     @Override
     public void llenarBombo() {
+        List lista = null;
+        
+         for (int i = 0; i < this.cantidadBolas; i++) {
+            lista.add(i);
+         }
+         Collections.shuffle(lista);
+         super.setListaBolas(lista);
 
     }
 

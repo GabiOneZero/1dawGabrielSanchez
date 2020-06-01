@@ -13,7 +13,7 @@ public class JuegoBingo {
 
     public static void main(String[] args) {
         
-        CartonAmericano cartonPrueba1 = new CartonAmericano(Patron.CARTON_LLENO);
+        CartonAmericano cartonPrueba1 = new CartonAmericano();
         
         System.out.println(cartonPrueba1);
     }
