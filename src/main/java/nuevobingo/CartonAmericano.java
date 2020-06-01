@@ -10,10 +10,7 @@ import java.util.Collections;
 import java.util.Random;
 
 /**
- *En esta clase también se comentó que era mejor no utilizar el patrón
- * como parámetro en el constructor. Preferible que la clase use algún
- * método para establecer el patrón internamente en el constructor
- * 
+
  * @author Gabriel
  */
 public final class CartonAmericano extends Carton {
@@ -25,10 +22,9 @@ public final class CartonAmericano extends Carton {
     public final static int COLUMNAS = 5;
 
     //====================CONSTRUCTORES==============================
-    public CartonAmericano(Patron premio) {
+    public CartonAmericano() {
         super(FILAS, COLUMNAS);
-        this.premio = premio;
-
+        premio = establecerPatron(5);
         generarCarton();
     }
 
@@ -97,10 +93,36 @@ public final class CartonAmericano extends Carton {
 
         for (int i = 0; i < FILAS; i++) {
 
-                this.getMatriz()[i][columna] = numeros[i];
+            this.getMatriz()[i][columna] = numeros[i];
 
-            
         }
+
+    }
+
+    public Patron establecerPatron(int numeroPatrones) {
+        Patron patron = null;
+        int opcionPatron = (int) (Math.random() * numeroPatrones + 1);
+
+        switch (opcionPatron) {
+            case 1:
+                patron = Patron.FORMA_CRUZ;
+                break;
+            case 2:
+                patron = Patron.FORMA_X;
+                break;
+            case 3:
+                patron = Patron.FORMA_Y;
+                break;
+            case 4:
+                patron = Patron.MARCO;
+                break;
+            default:
+                patron = Patron.CARTON_LLENO;
+                break;
+
+        }
+
+        return patron;
 
     }
 
@@ -114,9 +136,9 @@ public final class CartonAmericano extends Carton {
     public String toString() {
         String carton = "";
         carton += "....................................................................\n";
-        
+
         carton += "B\t" + "I\t" + "N\t" + "G\t" + "O\n";
-        
+
         for (int[] aux : this.getMatriz()) {
             for (int i : aux) {
                 //Dependiendo del valor actual imprimiremos una cosa u otra
@@ -135,8 +157,8 @@ public final class CartonAmericano extends Carton {
             carton += "\n"; //Salto después de cda lína para dar formato
 
         }
-       carton += "....................................................................\n";
-       return carton;
-    
+        carton += "....................................................................\n";
+        return carton;
+
     }
 }
