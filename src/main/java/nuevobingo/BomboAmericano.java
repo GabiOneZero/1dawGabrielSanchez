@@ -12,10 +12,10 @@ import java.util.List;
  *
  * @author Gabriel
  */
-public class BomboAmericano extends Bombo {
+public final class BomboAmericano extends Bombo {
 
     //======================ATRIBUTOS================================
-    public static final int cantidadBolas = 90;
+    public static final int CANTIDAD_BOLAS = 90;
 
     //====================CONSTRUCTORES==============================
     public BomboAmericano() {
@@ -26,9 +26,9 @@ public class BomboAmericano extends Bombo {
     //=======================MÉTODOS=================================
     @Override
     public void llenarBombo() {
-        List lista = null;
+        List<Integer> lista = null;
 
-        for (int i = 0; i < this.cantidadBolas; i++) {
+        for (int i = 0; i < CANTIDAD_BOLAS; i++) {
             lista.add(i);
         }
         Collections.shuffle(lista);
@@ -38,7 +38,7 @@ public class BomboAmericano extends Bombo {
 
     //==================GETTERS & SETTERS============================
     public static int getCantidadBolas() {
-        return cantidadBolas;
+        return CANTIDAD_BOLAS;
     }
 
     //======================TO STRING================================
