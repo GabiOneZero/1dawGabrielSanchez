@@ -24,7 +24,7 @@ public final class CartonAmericano extends Carton {
     //====================CONSTRUCTORES==============================
     public CartonAmericano() {
         super(FILAS, COLUMNAS);
-        premio = establecerPatron(5);
+        premio = establecerPatron();
         generarCarton();
     }
 
@@ -99,9 +99,9 @@ public final class CartonAmericano extends Carton {
 
     }
 
-    public Patron establecerPatron(int numeroPatrones) {
+    public Patron establecerPatron() {
         Patron patron = null;
-        int opcionPatron = (int) (Math.random() * numeroPatrones + 1);
+        int opcionPatron = (int) (Math.random() * 5 + 1);
 
         switch (opcionPatron) {
             case 1:
