@@ -15,6 +15,9 @@ public class JuegoBingo {
         
         CartonAmericano cartonPrueba1 = new CartonAmericano();
         
+        BomboAmericano bomboPrueba1 = new BomboAmericano();
+        
+        System.out.println(bomboPrueba1);
         System.out.println(cartonPrueba1);
     }
     
