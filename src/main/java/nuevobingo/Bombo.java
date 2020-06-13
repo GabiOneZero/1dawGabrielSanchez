@@ -5,7 +5,7 @@
  */
 package nuevobingo;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,7 +14,7 @@ import java.util.List;
 public abstract class Bombo {
 
     //======================ATRIBUTOS================================
-    private List listaBolas;
+    private ArrayList<Integer> listaBolas;
 
     //====================CONSTRUCTORES==============================
     public Bombo() {
@@ -30,22 +30,28 @@ public abstract class Bombo {
     public abstract void llenarBombo();
 
     public int bolasDentro() {
-        int bolas = 0;
+         int numeroBolas = 0;
 
-        return bolas;
+        for (int i = 0; i < this.listaBolas.size(); i++) {
+            if (this.listaBolas.get(i) != 0) {
+            } else {
+                numeroBolas++;
+            }
+        }
+        return numeroBolas;
     }
 
-    public boolean vacio() {
-        boolean vacio = false;
-        return vacio;
+    public boolean vacio() {        
+        
+        return this.listaBolas.isEmpty();
     }
 
     //==================GETTERS & SETTERS============================
-    public List getListaBolas() {
-        return listaBolas;
+    public ArrayList getListaBolas() {
+        return this.listaBolas;
     }
 
-    public void setListaBolas(List listaBolas) {
+    public void setListaBolas(ArrayList listaBolas) {
         this.listaBolas = listaBolas;
     }
 
