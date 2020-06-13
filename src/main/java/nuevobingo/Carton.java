@@ -23,35 +23,33 @@ public abstract class Carton {
 
     //=======================MÉTODOS=================================
     public abstract void generarCarton();
-    
-    public Point tacharNumero(int numero){
+
+    public Point tacharNumero(int numero) {
         Point punto = null;
-        
+
         return punto;
-        
+
     }
-    
-    public boolean esLinea(int numeroFila){
-        
+
+    public boolean esLinea(int numeroFila) {
+
         return false;
-        
+
     }
-    
-    public boolean esBingo(){
+
+    public boolean esBingo() {
         return false;
-        
+
     }
-    
+
     //==================GETTERS & SETTERS============================
-     public int[][] getMatriz() {
+    public int[][] getMatriz() {
         return matriz;
     }
 
     public void setMatriz(int[][] matriz) {
         this.matriz = matriz;
     }
-    
-    //======================TO STRING================================
 
-   
+    //======================TO STRING================================
 }
