@@ -5,8 +5,8 @@
  */
 package nuevobingo;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 /**
  *
@@ -26,10 +26,10 @@ public final class BomboAmericano extends Bombo {
     //=======================MÉTODOS=================================
     @Override
     public void llenarBombo() {
-        List<Integer> lista = null;
+        ArrayList<Integer> lista = new ArrayList<>();
 
         for (int i = 0; i < CANTIDAD_BOLAS; i++) {
-            lista.add(i);
+            lista.add(i + 1);
         }
         Collections.shuffle(lista);
         super.setListaBolas(lista);
