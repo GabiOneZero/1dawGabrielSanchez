@@ -11,8 +11,8 @@ import java.time.LocalDate;
  *
  * @author Gabriel
  */
-public final class BingoAmericano extends Bingo{
-    
+public final class BingoAmericano extends Bingo {
+
     private CartonAmericano carton;
     public BomboAmericano bombo;
 
@@ -20,6 +20,23 @@ public final class BingoAmericano extends Bingo{
         super(fecha, idJugador);
         this.carton = carton;
         this.bombo = bombo;
-        
+
     }
+
+    public CartonAmericano getCarton() {
+        return carton;
+    }
+
+    public void setCarton(CartonAmericano carton) {
+        this.carton = carton;
+    }
+
+    public BomboAmericano getBombo() {
+        return bombo;
+    }
+
+    public void setBombo(BomboAmericano bombo) {
+        this.bombo = bombo;
+    }
+
 }
