@@ -31,6 +31,7 @@ public class JuegoBingo {
         String idJugador;
         int bolaSacada;
         int turno = 1;
+        char guardar;
 
         do {
             do {
@@ -94,6 +95,13 @@ public class JuegoBingo {
                 //AVANZAR TURNO Y REPETIR
                 turno++;
                 System.out.println("******************************************************************");
+
+                System.out.println("Presiona G si quieres guardar la partida");
+                if (teclado.nextLine().equalsIgnoreCase("g")) {
+
+                    //guardarPartida();
+                }
+
             } while (!bingo.getCarton().esBingo());
 
         } while (!salir);
