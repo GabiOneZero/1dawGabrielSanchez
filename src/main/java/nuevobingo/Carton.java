@@ -43,14 +43,26 @@ public abstract class Carton {
 
     public boolean esLinea(int numeroFila) {
 
-        return false;
+       for (int i = 0; i < this.matriz[numeroFila].length; i++) {
+            if (this.matriz[numeroFila][i] != -1 && this.matriz[numeroFila][i] != 0) {
+                return false;
+            }
+        }
+        return true;
 
     }
 
     public boolean esBingo() {
         
         
-        
+         for (int i = 0; i < this.matriz.length; i++) {
+            for (int j = 0; j < this.matriz[i].length; j++) {
+
+                if (this.matriz[i][j] != -1 && this.matriz[i][j] != 0) {
+                return false;
+            }
+            }
+        }
         return false;
 
     }
