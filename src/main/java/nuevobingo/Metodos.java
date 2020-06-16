@@ -51,9 +51,19 @@ public class Metodos {
         return array;
     }
 
+    public CartonAmericano cartonDeArray(ArrayList<Integer> listaNumeros) {
+        CartonAmericano carton = new CartonAmericano();
+
+        for (int i = 0; i < CartonAmericano.COLUMNAS; i++) {
+            for (int j = 0; j < CartonAmericano.FILAS; j++) {
+                    carton.getMatriz()[i][j] = listaNumeros.get(i + j);
+            }
+        }
+        return carton;
+    }
+
     public static void mostrarIdGuardados() {
 
     }
-    
-    
+
 }
