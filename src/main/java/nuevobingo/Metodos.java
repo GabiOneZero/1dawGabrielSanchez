@@ -17,13 +17,13 @@ import java.util.ArrayList;
  */
 public class Metodos {
 
-    public static BingoAmericano cargarPartida(int codigo) {
-        BingoDAO bDAO = new BingoDAO();
-        BingoAmericano bA = bDAO.findByPk(codigo);
+//    public static BingoAmericano cargarPartida(int codigo) {
+//        BingoDAO bDAO = new BingoDAO();
+//        BingoAmericano bA = bDAO.findByPk(codigo);
+//
+//    }
 
-    }
-
-    public void guardarPartida(BingoAmericano bingo) {
+    public static void guardarPartida(BingoAmericano bingo) {
         BingoDAO bDAO = new BingoDAO();
         BingoVO bVO = new BingoVO();
         try {
@@ -40,7 +40,7 @@ public class Metodos {
         }
     }
 
-    public ArrayList<Integer> arrayDeCarton(BingoAmericano bingo) {
+    public static ArrayList<Integer> arrayDeCarton(BingoAmericano bingo) {
         ArrayList<Integer> array = new ArrayList<>();
         for (int[] aux : bingo.getCarton().getMatriz()) {
             for (int i : aux) {
@@ -51,7 +51,7 @@ public class Metodos {
         return array;
     }
 
-    public CartonAmericano cartonDeArray(ArrayList<Integer> listaNumeros) {
+    public static CartonAmericano cartonDeArray(ArrayList<Integer> listaNumeros) {
         CartonAmericano carton = new CartonAmericano();
 
         for (int i = 0; i < CartonAmericano.COLUMNAS; i++) {
