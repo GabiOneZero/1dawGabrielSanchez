@@ -5,18 +5,18 @@
  */
 package basedatos;
 
-import java.sql.SQLException;
 import java.util.List;
+import nuevobingo.BingoAmericano;
 
 /**
  *
  * @author Gabriel
  */
 public interface InterfaceBingo {
-    List<BingoVO> getAll() throws SQLException;
+    List<BingoVO> getAll();
     
     // Méodo para obtener un registro a partir de la PK
-    BingoVO findByPk(int pk);
+    BingoAmericano findByPk(int pk);
     
     // Método para insertar un registro
     int insertBingo (BingoVO bingo);
