@@ -31,6 +31,7 @@ public class JuegoBingo {
         Boolean validInput = true;
         Boolean salir = false;
         BingoAmericano bingo = null;
+        String id;
         String idJugador;
         int bolaSacada;
         int turno = 1;
@@ -56,15 +57,15 @@ public class JuegoBingo {
             switch (opcion) {
 
                 case 1:
-                    System.out.println("Introduzca un identificador único:");
+                    System.out.println("Introduzca su nombre:");
                     idJugador = teclado.nextLine();
                     bingo = new BingoAmericano(new CartonAmericano(), new BomboAmericano(), LocalDate.now(), idJugador);
                     break;
                 case 2:
                     System.out.println("Introduzca un identificador guardado:");
-                    mostrarIdGuardados();
-                    idJugador = teclado.nextLine();
-                    bingo = cargarPartida(idJugador);
+                    Metodos.mostrarIdGuardados();
+                    id = teclado.nextLine();
+                    bingo = Metodos.cargarPartida(id);
                     break;
                 default:
                     salir = true;
@@ -101,7 +102,7 @@ public class JuegoBingo {
                 System.out.println("Presiona G si quieres guardar la partida");
                 if (teclado.nextLine().equalsIgnoreCase("g")) {
 
-                    guardarPartida(bingo);
+                    Metodos.guardarPartida(bingo);
                 }
 
             } while (!bingo.getCarton().esBingo());
@@ -109,44 +110,6 @@ public class JuegoBingo {
         } while (!salir);
     }
 
-    public static BingoAmericano cargarPartida(String idJugador) {
-        BingoDAO bDAO = new BingoDAO();
-        BingoAmericano bA = bDAO.findByPk(idJugador);
-
-    }
-
-    public static void guardarPartida(BingoAmericano bingo) {
-        BingoDAO bDAO = new BingoDAO();
-        BingoVO bVO = new BingoVO();
-        try {
-            
-            bVO.setFecha(bingo.getFecha());
-            bVO.setIdJugador(bingo.getIdJugador());
-            bVO.setTipo(1);
-            bVO.setBombo(bingo.getBombo().getListaBolas());
-            bVO.setBombo(arrayDeCarton(bingo));
-
-            bDAO.insertBingo(bVO);
-        } catch (Exception ex) {
-            System.out.println("No se ha podido realizar la operación:");
-        }
-    }
-
-    public static ArrayList<Integer> arrayDeCarton(BingoAmericano bingo) {
-        ArrayList<Integer> array = new ArrayList<>();
-        for (int[] aux : bingo.getCarton().getMatriz()) {
-            for (int i : aux) {
-                array.add(i);
-            }
-        }
-
-        return array;
-    }
     
-    
-
-    public static void mostrarIdGuardados() {
-
-    }
 
 }
