@@ -19,18 +19,18 @@ public interface InterfaceBingo {
     BingoVO findByPk(int pk);
     
     // Método para insertar un registro
-    int insertPersona (BingoVO persona);
+    int insertBingo (BingoVO bingo);
     
     // Método para insertar varios registros
-    int insertPersona (List<BingoVO> lista);
+    int insertBingo (List<BingoVO> lista);
     
     // Método para borrar una persona
-    int deletePersona (BingoVO p);
+    int deleteBingo (BingoVO bVO);
     
     // Método para borrar toda la tabla
-    int deletePersona();
+    int deleteBingo();
     
     // Método para modificar una persona. Se modifica a la persona que tenga esa 'pk'
     // con los nuevos datos que traiga la persona 'nuevosDatos'
-    int updatePersona (int pk, BingoVO nuevosDatos);
+    int updateBingo (int pk, BingoVO nuevosDatos);
 }
