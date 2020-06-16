@@ -5,6 +5,7 @@
  */
 package nuevobingo;
 
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -26,17 +27,20 @@ public class JuegoBingo {
         int opcion = 0;
         Boolean validInput = true;
         Boolean salir = false;
+        BingoAmericano bingo;
+        String idJugador;
+        
         do {
             do {
-                System.out.println("===========BINGO============");
-                System.out.println("    1.- Nueva Partida");
-                System.out.println("    2.- Cargar Partida");
-                System.out.println("    3.- Salir");
-                System.out.println("============================");
+                System.out.println("=========BINGO AMERICANO==========");
+                System.out.println("      1.- Nueva Partida");
+                System.out.println("      2.- Cargar Partida");
+                System.out.println("      3.- Salir");
+                System.out.println("==================================");
                 try {
                     opcion = teclado.nextInt();
                 } catch (InputMismatchException e) {
-                    System.out.println("Por favor, introduzca un número");
+                    System.out.println("Por favor, introduzca un número válido");
                     teclado.next();
                     validInput = false;
                 }
@@ -46,15 +50,18 @@ public class JuegoBingo {
             switch (opcion) {
 
                 case 1:
-                    nuevaPartida();
+                    System.out.println("Introduzca un identificador único:");
+                    idJugador = teclado.nextLine();
+                    bingo = new BingoAmericano(new CartonAmericano(), new BomboAmericano(), LocalDate.now(), idJugador);       
                     break;
                 case 2:
-                    cargarPartida();
+                   // cargarPartida();
+                    System.out.println("Introduzca un identificador guardado");
                     break;
                 default:
                     salir = true;
             }
         } while (!salir);
     }
-
+    
 }
