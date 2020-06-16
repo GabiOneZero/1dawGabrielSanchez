@@ -5,10 +5,7 @@
  */
 package nuevobingo;
 
-import basedatos.*;
-import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
