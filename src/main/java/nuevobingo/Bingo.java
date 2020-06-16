@@ -18,6 +18,10 @@ public abstract class Bingo {
     private String idJugador; 
     
  //========================CONSTRUCTOR====================================
+    public Bingo(){
+        
+    }
+    
     public Bingo(LocalDate fecha, String idJugador) {
         this.fecha = fecha;
         this.idJugador = idJugador;
