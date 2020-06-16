@@ -161,16 +161,16 @@ public class BingoDAO implements InterfaceBingo {
     }
 
     @Override
-    public int deleteBingo(BingoVO persona) {
+    public int deleteBingo(BingoVO bingo) {
         int numFilas = 0;
 
-        String sql = "delete from persona where pk = ?";
+        String sql = "delete from bingo where pk = ?";
 
         // Sentencia parametrizada
         try (PreparedStatement prest = con.prepareStatement(sql)) {
 
             // Establecemos los parámetros de la sentencia
-            prest.setInt(1, persona.getPk());
+            prest.setInt(1, bingo.getPk());
             // Ejecutamos la sentencia
             numFilas = prest.executeUpdate();
         } catch (SQLException ex) {
