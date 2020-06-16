@@ -27,9 +27,11 @@ public class JuegoBingo {
         int opcion = 0;
         Boolean validInput = true;
         Boolean salir = false;
-        BingoAmericano bingo;
+        BingoAmericano bingo = null;
         String idJugador;
-        
+        int bolaSacada;
+        int turno = 1;
+
         do {
             do {
                 System.out.println("=========BINGO AMERICANO==========");
@@ -52,16 +54,49 @@ public class JuegoBingo {
                 case 1:
                     System.out.println("Introduzca un identificador único:");
                     idJugador = teclado.nextLine();
-                    bingo = new BingoAmericano(new CartonAmericano(), new BomboAmericano(), LocalDate.now(), idJugador);       
+                    bingo = new BingoAmericano(new CartonAmericano(), new BomboAmericano(), LocalDate.now(), idJugador);
                     break;
                 case 2:
-                   // cargarPartida();
-                    System.out.println("Introduzca un identificador guardado");
+                    // cargarPartida();
+                    System.out.println("Introduzca un identificador guardado:");
+                    // mostrarIdGuardados();
+                    idJugador = teclado.nextLine();
+                    bingo = null;
                     break;
                 default:
                     salir = true;
             }
+
+            do {
+
+                //SACAR BOLA
+                System.out.println("**************************TURNO " + turno + "********************************");
+                bolaSacada = bingo.getBombo().sacarBola();
+                System.out.println("Ha salido el número: " + bolaSacada);
+
+                //TACHAR CASILLA
+                if (bingo.getCarton().tacharNumero(bolaSacada) != null) {
+                    System.out.println("Se ha tachado el número " + bolaSacada);
+
+                    //COMPROBAR BINGO          
+                    if (bingo.getCarton().esBingo()) {
+                        System.out.println("BINGO!!!!!!!!!!!");
+                        System.out.println("ENHORABUENA!!!!!");
+                        break;
+                    }
+                } else {
+                    System.out.println("No hubo suerte con esta bola");
+                }
+
+                //ENSEÑAR CARTÓN MARCADO
+                System.out.println(bingo.getCarton());
+
+                //AVANZAR TURNO Y REPETIR
+                turno++;
+                System.out.println("******************************************************************");
+            } while (!bingo.getCarton().esBingo());
+
         } while (!salir);
     }
-    
+
 }
