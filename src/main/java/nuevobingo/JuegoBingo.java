@@ -5,7 +5,10 @@
  */
 package nuevobingo;
 
+import basedatos.*;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -58,11 +61,10 @@ public class JuegoBingo {
                     bingo = new BingoAmericano(new CartonAmericano(), new BomboAmericano(), LocalDate.now(), idJugador);
                     break;
                 case 2:
-                    // cargarPartida();
                     System.out.println("Introduzca un identificador guardado:");
-                    // mostrarIdGuardados();
+                    mostrarIdGuardados();
                     idJugador = teclado.nextLine();
-                    bingo = null;
+                    bingo = cargarPartida(idJugador);
                     break;
                 default:
                     salir = true;
@@ -99,12 +101,52 @@ public class JuegoBingo {
                 System.out.println("Presiona G si quieres guardar la partida");
                 if (teclado.nextLine().equalsIgnoreCase("g")) {
 
-                    //guardarPartida();
+                    guardarPartida(bingo);
                 }
 
             } while (!bingo.getCarton().esBingo());
 
         } while (!salir);
+    }
+
+    public static BingoAmericano cargarPartida(String idJugador) {
+        BingoDAO bDAO = new BingoDAO();
+        BingoAmericano bA = bDAO.findByPk(idJugador);
+
+    }
+
+    public static void guardarPartida(BingoAmericano bingo) {
+        BingoDAO bDAO = new BingoDAO();
+        BingoVO bVO = new BingoVO();
+        try {
+            
+            bVO.setFecha(bingo.getFecha());
+            bVO.setIdJugador(bingo.getIdJugador());
+            bVO.setTipo(1);
+            bVO.setBombo(bingo.getBombo().getListaBolas());
+            bVO.setBombo(arrayDeCarton(bingo));
+
+            bDAO.insertBingo(bVO);
+        } catch (Exception ex) {
+            System.out.println("No se ha podido realizar la operación:");
+        }
+    }
+
+    public static ArrayList<Integer> arrayDeCarton(BingoAmericano bingo) {
+        ArrayList<Integer> array = new ArrayList<>();
+        for (int[] aux : bingo.getCarton().getMatriz()) {
+            for (int i : aux) {
+                array.add(i);
+            }
+        }
+
+        return array;
+    }
+    
+    
+
+    public static void mostrarIdGuardados() {
+
     }
 
 }
