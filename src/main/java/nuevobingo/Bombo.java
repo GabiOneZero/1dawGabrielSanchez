@@ -19,8 +19,11 @@ public abstract class Bombo {
     //====================CONSTRUCTORES==============================
     public Bombo() {
     }
-    //=======================MÉTODOS=================================
 
+    public Bombo(ArrayList<Integer> listaBolas){
+        this.listaBolas = listaBolas;
+    }
+    //=======================MÉTODOS=================================
     public int sacarBola() {
         int numeroBola = 0;
 
@@ -30,7 +33,7 @@ public abstract class Bombo {
     public abstract void llenarBombo();
 
     public int bolasDentro() {
-         int numeroBolas = 0;
+        int numeroBolas = 0;
 
         for (int i = 0; i < this.listaBolas.size(); i++) {
             if (this.listaBolas.get(i) != 0) {
@@ -41,8 +44,8 @@ public abstract class Bombo {
         return numeroBolas;
     }
 
-    public boolean vacio() {        
-        
+    public boolean vacio() {
+
         return this.listaBolas.isEmpty();
     }
 
