@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import nuevobingo.*;
 
 /**
  *
@@ -62,10 +63,10 @@ public class BingoDAO implements InterfaceBingo {
     }
 
     @Override
-    public BingoVO findByPk(int pk) {
+    public BingoAmericano findByPk(int pk) {
 
         ResultSet res = null;
-        BingoVO bingo = new BingoVO();
+        BingoAmericano bingo = new BingoAmericano();
 
         String sql = "select * from bingo where pk=?";
 
@@ -80,12 +81,11 @@ public class BingoDAO implements InterfaceBingo {
             // si existe esa pk
             if (res.next()) {
                 // Recogemos los datos de la persona, guardamos en un objeto
-                bingo.setPk(res.getInt("pk"));
+                bingo.setId(String.valueOf(res.getInt("pk")));
                 bingo.setFecha(res.getDate("fecha").toLocalDate());
                 bingo.setIdJugador(res.getString("jugador"));
-                bingo.setTipo(res.getInt("tipo"));
-                bingo.setBombo((ArrayList<Integer>) res.getArray("bombo"));
-                bingo.setBombo((ArrayList<Integer>) res.getArray("carton"));
+                bingo.setBombo((new BomboAmericano((ArrayList<Integer>) res.getArray("bombo"))));
+                bingo.setCarton((ArrayList<Integer>) res.getArray("carton"));
                 return bingo;
             }
 
