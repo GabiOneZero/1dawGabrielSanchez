@@ -26,6 +26,16 @@ public abstract class Carton {
 
     public Point tacharNumero(int numero) {
         Point punto = null;
+        
+         for (int i = 0; i < this.matriz.length; i++) {
+            for (int j = 0; j < this.matriz[i].length; j++) {
+
+                if (this.matriz[i][j] == numero) {
+                    this.matriz[i][j] = -1;
+                    return new Point(i, j);
+                }
+            }
+        }
 
         return punto;
 
@@ -38,6 +48,9 @@ public abstract class Carton {
     }
 
     public boolean esBingo() {
+        
+        
+        
         return false;
 
     }
