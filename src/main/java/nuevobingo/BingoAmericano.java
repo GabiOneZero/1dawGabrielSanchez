@@ -16,6 +16,9 @@ public final class BingoAmericano extends Bingo {
     private CartonAmericano carton;
     public BomboAmericano bombo;
 
+    public BingoAmericano() {
+    }
+
     public BingoAmericano(CartonAmericano carton, BomboAmericano bombo, LocalDate fecha, String idJugador) {
         super(fecha, idJugador);
         this.carton = carton;
