@@ -22,6 +22,10 @@ public final class BomboAmericano extends Bombo {
         super();
         llenarBombo();
     }
+    
+    public BomboAmericano(ArrayList<Integer> listaBolas){
+        super(listaBolas);
+    }
 
     //=======================MÉTODOS=================================
     @Override
