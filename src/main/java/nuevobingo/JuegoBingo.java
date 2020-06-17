@@ -98,7 +98,7 @@ public class JuegoBingo {
                     turno++;
                     System.out.println("******************************************************************");
 
-                    System.out.println("Presiona G si quieres guardar la partida");
+                    System.out.println("Presiona G si quieres guardar la partida o ENTER para continuar");
                     if (teclado.nextLine().equalsIgnoreCase("g")) {
 
                         Metodos.guardarPartida(bingo);
