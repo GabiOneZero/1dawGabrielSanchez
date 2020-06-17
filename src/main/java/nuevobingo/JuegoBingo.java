@@ -5,6 +5,7 @@
  */
 package nuevobingo;
 
+import basedatos.BingoDAO;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -64,10 +65,17 @@ public class JuegoBingo {
                     bingo.getCarton().mostrarCarton();
                     break;
                 case 2:
-                    System.out.println("Introduzca un identificador guardado:");
-                    id = teclado.nextLine();
+                    do {
+                        System.out.println("Introduzca un codigo de guardado válido o pulse 0 para salir:");
+                        id = teclado.nextLine();
+                        if (id.equals("0")) {
+                            break;
+                        }
+                    } while (Metodos.cargarPartida(Integer.valueOf(id)) == null);
                     bingo = Metodos.cargarPartida(Integer.valueOf(id));
                     bingo.getCarton().mostrarCarton();
+                    BingoDAO bDAO = new BingoDAO();
+                    bDAO.deleteBingo(Integer.valueOf(id));
                     break;
                 default:
                     salir = true;
@@ -97,7 +105,7 @@ public class JuegoBingo {
                     }
 
                     //ENSEÑAR CARTÓN MARCADO
-                   bingo.getCarton().mostrarCarton();
+                    bingo.getCarton().mostrarCarton();
 
                     //AVANZAR TURNO Y REPETIR
                     turno++;
@@ -106,7 +114,8 @@ public class JuegoBingo {
                     System.out.println("Presiona G si quieres guardar la partida o ENTER para continuar");
                     if (teclado.nextLine().equalsIgnoreCase("g")) {
 
-                        Metodos.guardarPartida(bingo);
+                        System.out.println("Su código de guardado es: " + Metodos.guardarPartida(bingo));
+                        break;
                     }
 
                 } while (!bingo.getCarton().esBingo());
