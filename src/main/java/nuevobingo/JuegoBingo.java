@@ -60,53 +60,53 @@ public class JuegoBingo {
                     break;
                 case 2:
                     System.out.println("Introduzca un identificador guardado:");
-                    Metodos.mostrarIdGuardados();
                     id = teclado.nextLine();
-                    bingo = Metodos.cargarPartida(id);
+                    bingo = Metodos.cargarPartida(Integer.valueOf(id));
                     break;
                 default:
                     salir = true;
             }
 
-            do {
+            if (bingo != null) {
 
-                //SACAR BOLA
-                System.out.println("**************************TURNO " + turno + "********************************");
-                bolaSacada = bingo.getBombo().sacarBola();
-                System.out.println("Ha salido el número: " + bolaSacada);
+                do {
 
-                //TACHAR CASILLA
-                if (bingo.getCarton().tacharNumero(bolaSacada) != null) {
-                    System.out.println("Se ha tachado el número " + bolaSacada);
+                    //SACAR BOLA
+                    System.out.println("**************************TURNO " + turno + "********************************");
+                    bolaSacada = bingo.getBombo().sacarBola();
+                    System.out.println("Ha salido el número: " + bolaSacada);
 
-                    //COMPROBAR BINGO          
-                    if (bingo.getCarton().esBingo()) {
-                        System.out.println("BINGO!!!!!!!!!!!");
-                        System.out.println("ENHORABUENA!!!!!");
-                        break;
+                    //TACHAR CASILLA
+                    if (bingo.getCarton().tacharNumero(bolaSacada) != null) {
+                        System.out.println("Se ha tachado el número " + bolaSacada);
+
+                        //COMPROBAR BINGO          
+                        if (bingo.getCarton().esBingo()) {
+                            System.out.println("BINGO!!!!!!!!!!!");
+                            System.out.println("ENHORABUENA!!!!!");
+                            break;
+                        }
+                    } else {
+                        System.out.println("No hubo suerte con esta bola");
                     }
-                } else {
-                    System.out.println("No hubo suerte con esta bola");
-                }
 
-                //ENSEÑAR CARTÓN MARCADO
-                System.out.println(bingo.getCarton());
+                    //ENSEÑAR CARTÓN MARCADO
+                    System.out.println(bingo.getCarton());
 
-                //AVANZAR TURNO Y REPETIR
-                turno++;
-                System.out.println("******************************************************************");
+                    //AVANZAR TURNO Y REPETIR
+                    turno++;
+                    System.out.println("******************************************************************");
 
-                System.out.println("Presiona G si quieres guardar la partida");
-                if (teclado.nextLine().equalsIgnoreCase("g")) {
+                    System.out.println("Presiona G si quieres guardar la partida");
+                    if (teclado.nextLine().equalsIgnoreCase("g")) {
 
-                    Metodos.guardarPartida(bingo);
-                }
+                        Metodos.guardarPartida(bingo);
+                    }
 
-            } while (!bingo.getCarton().esBingo());
+                } while (!bingo.getCarton().esBingo());
+            }
 
         } while (!salir);
     }
-
-    
 
 }

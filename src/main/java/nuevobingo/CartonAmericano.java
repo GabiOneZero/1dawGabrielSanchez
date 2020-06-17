@@ -5,12 +5,13 @@
  */
 package nuevobingo;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
 /**
-
+ *
  * @author Gabriel
  */
 public final class CartonAmericano extends Carton {
@@ -31,7 +32,7 @@ public final class CartonAmericano extends Carton {
     //=======================MÉTODOS=================================
     @Override
     public void generarCarton() {
-        int[] listaNumeros = new int[5];
+        int[] listaNumeros;
 
         for (int i = 0; i < COLUMNAS; i++) {
 
@@ -92,15 +93,18 @@ public final class CartonAmericano extends Carton {
     public void rellenarMatriz(int columna, int[] numeros) {
 
         for (int i = 0; i < FILAS; i++) {
-
-            this.getMatriz()[i][columna] = numeros[i];
+            if (this.premio.getCasillas().get(i).x == i && this.premio.getCasillas().get(i).y == columna) {
+                this.getMatriz()[i][columna] = numeros[i];
+            } else {
+                this.getMatriz()[i][columna] = 0;
+            }
 
         }
 
     }
 
     public Patron establecerPatron() {
-        Patron patron = null;
+        Patron patron;
         int opcionPatron = (int) (Math.random() * 5 + 1);
 
         switch (opcionPatron) {
