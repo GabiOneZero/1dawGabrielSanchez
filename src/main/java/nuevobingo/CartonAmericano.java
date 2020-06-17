@@ -61,8 +61,6 @@ public final class CartonAmericano extends Carton {
 
         }
 
-        this.getMatriz()[2][2] = 0;
-
     }
 
     public int[] generarColumna(int minimo, int maximo) {
@@ -91,14 +89,16 @@ public final class CartonAmericano extends Carton {
     }
 
     public void rellenarMatriz(int columna, int[] numeros) {
+//
+//        Point point = new Point();
+//        point.setLocation(FILAS, FILAS);
 
         for (int i = 0; i < FILAS; i++) {
-            if (this.premio.getCasillas().get(i).x == i && this.premio.getCasillas().get(i).y == columna) {
+            if (this.premio.getCasillas().contains(new Point(i, columna))) {
                 this.getMatriz()[i][columna] = numeros[i];
             } else {
                 this.getMatriz()[i][columna] = 0;
             }
-
         }
 
     }
@@ -130,6 +130,34 @@ public final class CartonAmericano extends Carton {
 
     }
 
+    public void mostrarCarton() {
+        System.out.println("....................................................................");
+        
+        System.out.println("B\tI\tN\tG\tO");
+        //Doble bucle for-each para recorrer la matriz
+        for (int[] aux : this.getMatriz()) {
+            for (int i : aux) {
+                //Dependiendo del valor actual imprimiremos una cosa u otra
+                switch (i) {
+
+                    case 0: //Equivale a un hueco, por tanto imprimimos un espacio en blanco
+                        System.out.print(" \t");
+                        break;
+                    case -1: //Quiere decir que es un número que ha salido en el bombo y ha sido marcado, entonces lo representamos con una X
+                        System.out.print("X\t");
+                        break;
+                    default: //Por defecto se imprimirá en consola el número correspondiente
+                        System.out.print(i + "\t");
+                        break;
+                }
+            }
+            System.out.println(""); //Salto después de cda lína para dar formato
+
+        }
+        System.out.println("....................................................................");
+
+    }
+
     //==================GETTERS & SETTERS============================
     public Patron getPatron() {
         return premio;
@@ -138,31 +166,15 @@ public final class CartonAmericano extends Carton {
 
     @Override
     public String toString() {
-        String carton = "";
-        carton += "....................................................................\n";
+        String cadenaNumeros = "";
 
-        carton += "B\t" + "I\t" + "N\t" + "G\t" + "O\n";
-
-        for (int[] aux : this.getMatriz()) {
-            for (int i : aux) {
-                //Dependiendo del valor actual imprimiremos una cosa u otra
-                switch (i) {
-                    case 0: //Equivale a un hueco, por tanto imprimimos un espacio en blanco
-                        carton += " \t";
-                        break;
-                    case -1: //Quiere decir que es un número que ha salido en el bombo y ha sido marcado, entonces lo representamos con una X
-                        carton += "X\t";
-                        break;
-                    default: //Por defecto se imprimirá en consola el número correspondiente
-                        carton += i + "\t";
-                        break;
-                }
+        for (int i = 0; i < CartonAmericano.COLUMNAS; i++) {
+            for (int j = 0; j < CartonAmericano.FILAS; j++) {
+                cadenaNumeros += this.getMatriz()[i][j];
+                System.out.print(", ");
             }
-            carton += "\n"; //Salto después de cda lína para dar formato
-
         }
-        carton += "....................................................................\n";
-        return carton;
-
+        cadenaNumeros = cadenaNumeros.substring(0, cadenaNumeros.length() - 1);
+        return cadenaNumeros;
     }
 }
