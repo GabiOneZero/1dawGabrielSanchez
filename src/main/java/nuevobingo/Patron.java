@@ -14,17 +14,19 @@ import java.util.ArrayList;
  */
 public enum Patron {
 
-    CARTON_LLENO(cartonLleno(), "Cartón con números en todas las casillas."),
-    MARCO(marco(), "Cartón con números solo en el borde exterior del cartón"),
-    FORMA_CRUZ(cruz(), "Cartón con números formando una +"),
-    FORMA_X(cartonX(), "Cartón con números formando una X."),
-    FORMA_Y(cartonY(), "Cartón con números formando una Y.");
+    CARTON_LLENO(cartonLleno(), "Cartón lleno", "Cartón con números en todas las casillas."),
+    MARCO(marco(), "Marco", "Cartón con números solo en el borde exterior del cartón"),
+    FORMA_CRUZ(cruz(),"Cruz", "Cartón con números formando una +"),
+    FORMA_X(cartonX(), "X", "Cartón con números formando una X."),
+    FORMA_Y(cartonY(), "Y", "Cartón con números formando una Y.");
 
     private ArrayList<Point> casillas;
     private String descripcion;
+    private String nombre;
 
-    Patron(ArrayList<Point> casillas, String descripcion) {
+    Patron(ArrayList<Point> casillas, String nombre, String descripcion) {
         this.casillas = casillas;
+        this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
@@ -157,5 +159,10 @@ public enum Patron {
     public String getDescripcion() {
         return descripcion;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+    
 
 }
