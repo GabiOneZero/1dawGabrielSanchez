@@ -34,11 +34,12 @@ public class Metodos {
             bVO.setIdJugador(bingo.getIdJugador());
             bVO.setTipo(1);
             bVO.setBombo(bingo.getBombo().getListaBolas());
-            bVO.setBombo(arrayDeCarton(bingo));
+            bVO.setCarton(arrayDeCarton(bingo));
             
             bDAO.insertBingo(bVO);
         } catch (Exception ex) {
-            System.out.println("No se ha podido realizar la operación:");
+            System.out.println("No se ha podido guardar la partida");
+            System.out.println(ex.getMessage());
         }
     }
 
