@@ -6,6 +6,7 @@
 package nuevobingo;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -25,9 +26,8 @@ public abstract class Bombo {
     }
     //=======================MÉTODOS=================================
     public int sacarBola() {
-        int numeroBola = 0;
-
-        return numeroBola;
+        
+        return this.listaBolas.remove(0);
     }
 
     public abstract void llenarBombo();
