@@ -171,7 +171,7 @@ public final class CartonAmericano extends Carton {
         for (int i = 0; i < CartonAmericano.COLUMNAS; i++) {
             for (int j = 0; j < CartonAmericano.FILAS; j++) {
                 cadenaNumeros += this.getMatriz()[i][j];
-                System.out.print(", ");
+                cadenaNumeros += ",";
             }
         }
         cadenaNumeros = cadenaNumeros.substring(0, cadenaNumeros.length() - 1);
