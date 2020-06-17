@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package basedatos;
 
 import java.sql.Connection;
@@ -24,7 +23,7 @@ public class Conexion {
     private static final String PASS = "";
 
     private static Connection instancia = null;
-    
+
     // Constructor privado no accesible desde otras clases
     private Conexion() {
 
@@ -33,7 +32,10 @@ public class Conexion {
     // Método de clase para acceder a la instancia del objeto Connection
     public static Connection getInstance() {
         // Si el objeto Connection no está creado, se crea
+
         if (instancia == null) {
+
+           
             try {
 
                 // Se crea el objeto Connection	
@@ -45,10 +47,11 @@ public class Conexion {
 
                 // Error en la conexión
                 System.out.println("Conexión fallida: " + e.getMessage());
+                System.out.println("SQLState: " + e.getSQLState());
+                System.out.println("VendorError: " + e.getErrorCode());
             }
         }
         return instancia;
     }
 
 }
-
