@@ -85,7 +85,7 @@ public class BingoDAO implements InterfaceBingo {
                 bingo.setFecha(res.getDate("fecha").toLocalDate());
                 bingo.setIdJugador(res.getString("jugador"));
                 bingo.setBombo((new BomboAmericano((ArrayList<Integer>) res.getArray("bombo"))));
-                bingo.setCarton((ArrayList<Integer>) res.getArray("carton"));
+                bingo.setCarton(Metodos.cartonDeArray((ArrayList<Integer>) res.getArray("carton")));
                 return bingo;
             }
 
@@ -161,7 +161,7 @@ public class BingoDAO implements InterfaceBingo {
     }
 
     @Override
-    public int deleteBingo(BingoVO bingo) {
+    public int deleteBingo(int pk) {
         int numFilas = 0;
 
         String sql = "delete from bingo where pk = ?";
@@ -170,7 +170,7 @@ public class BingoDAO implements InterfaceBingo {
         try (PreparedStatement prest = con.prepareStatement(sql)) {
 
             // Establecemos los parámetros de la sentencia
-            prest.setInt(1, bingo.getPk());
+            prest.setInt(1, pk);
             // Ejecutamos la sentencia
             numFilas = prest.executeUpdate();
         } catch (SQLException ex) {
