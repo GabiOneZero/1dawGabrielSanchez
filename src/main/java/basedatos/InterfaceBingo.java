@@ -25,7 +25,7 @@ public interface InterfaceBingo {
     int insertBingo (List<BingoVO> lista);
     
     // Método para borrar una persona
-    int deleteBingo (BingoVO bVO);
+    int deleteBingo (int pk);
     
     // Método para borrar toda la tabla
     int deleteBingo();
