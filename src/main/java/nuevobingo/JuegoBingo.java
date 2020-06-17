@@ -56,26 +56,10 @@ public class JuegoBingo {
             switch (opcion) {
 
                 case 1:
-                    System.out.println("Introduzca su nombre:");
-                    idJugador = teclado.nextLine();
-                    bingo = new BingoAmericano(new CartonAmericano(), new BomboAmericano(), LocalDate.now(), idJugador);
-                    System.out.println("Hola, " + idJugador);
-                    System.out.println("Jugaremos con el patrón : " + bingo.getCarton().getPatron().getNombre());
-                    System.out.println("Este es su cartón");
-                    bingo.getCarton().mostrarCarton();
+                    bingo = nuevaPartida();
                     break;
                 case 2:
-                    do {
-                        System.out.println("Introduzca un codigo de guardado válido o pulse 0 para salir:");
-                        id = teclado.nextLine();
-                        if (id.equals("0")) {
-                            break;
-                        }
-                    } while (Metodos.cargarPartida(Integer.valueOf(id)) == null);
-                    bingo = Metodos.cargarPartida(Integer.valueOf(id));
-                    bingo.getCarton().mostrarCarton();
-                    BingoDAO bDAO = new BingoDAO();
-                    bDAO.deleteBingo(Integer.valueOf(id));
+                    bingo = cargarPartida();
                     break;
                 default:
                     salir = true;
@@ -122,6 +106,40 @@ public class JuegoBingo {
             }
 
         } while (!salir);
+    }
+
+    public static BingoAmericano nuevaPartida() {
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Introduzca su nombre:");
+        String idJugador = teclado.nextLine();
+        BingoAmericano bingo = new BingoAmericano(new CartonAmericano(), new BomboAmericano(), LocalDate.now(), idJugador);
+        System.out.println("Hola, " + idJugador);
+        System.out.println("Jugaremos con el patrón : " + bingo.getCarton().getPatron().getNombre());
+        System.out.println("Este es su cartón");
+        bingo.getCarton().mostrarCarton();
+
+        return bingo;
+    }
+
+    public static BingoAmericano cargarPartida() {
+        Scanner teclado = new Scanner(System.in);
+        BingoDAO bDAO = new BingoDAO();
+        String id;
+
+        do {
+            System.out.println("Introduzca un codigo de guardado válido o pulse 0 para salir:");
+            id = teclado.nextLine();
+            if (id.equals("0")) {
+                break;
+            }
+        } while (Metodos.cargarPartida(Integer.valueOf(id)) == null);
+
+        BingoAmericano bingo = Metodos.cargarPartida(Integer.valueOf(id));
+        bingo.getCarton().mostrarCarton();
+
+        bDAO.deleteBingo(Integer.valueOf(id));
+
+        return bingo;
     }
 
 }
