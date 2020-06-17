@@ -58,11 +58,16 @@ public class JuegoBingo {
                     System.out.println("Introduzca su nombre:");
                     idJugador = teclado.nextLine();
                     bingo = new BingoAmericano(new CartonAmericano(), new BomboAmericano(), LocalDate.now(), idJugador);
+                    System.out.println("Hola, " + idJugador);
+                    System.out.println("Jugaremos con el patrón : " + bingo.getCarton().getPatron().getNombre());
+                    System.out.println("Este es su cartón");
+                    bingo.getCarton().mostrarCarton();
                     break;
                 case 2:
                     System.out.println("Introduzca un identificador guardado:");
                     id = teclado.nextLine();
                     bingo = Metodos.cargarPartida(Integer.valueOf(id));
+                    bingo.getCarton().mostrarCarton();
                     break;
                 default:
                     salir = true;
@@ -92,7 +97,7 @@ public class JuegoBingo {
                     }
 
                     //ENSEÑAR CARTÓN MARCADO
-                    System.out.println(bingo.getCarton());
+                   bingo.getCarton().mostrarCarton();
 
                     //AVANZAR TURNO Y REPETIR
                     turno++;
