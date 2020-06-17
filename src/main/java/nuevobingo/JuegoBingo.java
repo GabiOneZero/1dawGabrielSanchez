@@ -43,13 +43,14 @@ public class JuegoBingo {
                 System.out.println("==================================");
                 try {
                     opcion = teclado.nextInt();
+                    teclado.nextLine();
                 } catch (InputMismatchException e) {
                     System.out.println("Por favor, introduzca un número válido");
                     teclado.next();
                     validInput = false;
                 }
 
-            } while (opcion > 3 || opcion < 1 || !validInput);
+            } while (opcion > 3 && opcion < 1 || !validInput);
 
             switch (opcion) {
 
