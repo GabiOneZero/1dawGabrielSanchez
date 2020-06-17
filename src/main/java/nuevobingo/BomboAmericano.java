@@ -15,7 +15,7 @@ import java.util.Collections;
 public final class BomboAmericano extends Bombo {
 
     //======================ATRIBUTOS================================
-    public static final int CANTIDAD_BOLAS = 90;
+    public static final int CANTIDAD_BOLAS = 75;
 
     //====================CONSTRUCTORES==============================
     public BomboAmericano() {
@@ -48,7 +48,8 @@ public final class BomboAmericano extends Bombo {
     //======================TO STRING================================
     @Override
     public String toString() {
-        return "BomboAmericano{" + '}';
+        
+        return super.toString();
     }
 
 }
