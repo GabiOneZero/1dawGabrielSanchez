@@ -17,23 +17,25 @@ import java.util.ArrayList;
  */
 public class Metodos {
 
-//    public static BingoAmericano cargarPartida(int codigo) {
-//        BingoDAO bDAO = new BingoDAO();
-//        BingoAmericano bA = bDAO.findByPk(codigo);
-//
-//    }
+    public static BingoAmericano cargarPartida(int codigo) {
+        BingoDAO bDAO = new BingoDAO();
+        BingoAmericano bingo = bDAO.findByPk(codigo);       
+        bDAO.deleteBingo(codigo);
+        
+        return bingo;
+    }
 
     public static void guardarPartida(BingoAmericano bingo) {
         BingoDAO bDAO = new BingoDAO();
         BingoVO bVO = new BingoVO();
         try {
-
+            bVO.setPk(generarPK());
             bVO.setFecha(bingo.getFecha());
             bVO.setIdJugador(bingo.getIdJugador());
             bVO.setTipo(1);
             bVO.setBombo(bingo.getBombo().getListaBolas());
             bVO.setBombo(arrayDeCarton(bingo));
-
+            
             bDAO.insertBingo(bVO);
         } catch (Exception ex) {
             System.out.println("No se ha podido realizar la operación:");
@@ -62,6 +64,9 @@ public class Metodos {
         return carton;
     }
 
+    public static int generarPK(){
+        return (int) (Math.random()* 9999999 + 1);
+    }
     public static void mostrarIdGuardados() {
 
     }
