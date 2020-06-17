@@ -8,6 +8,7 @@ package nuevobingo;
 import basedatos.BingoDAO;
 import basedatos.BingoVO;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -20,12 +21,12 @@ public class Metodos {
     public static BingoAmericano cargarPartida(int codigo) {
         BingoDAO bDAO = new BingoDAO();
         BingoAmericano bingo = bDAO.findByPk(codigo);       
-        bDAO.deleteBingo(codigo);
+        
         
         return bingo;
     }
 
-    public static void guardarPartida(BingoAmericano bingo) {
+    public static int guardarPartida(BingoAmericano bingo) {
         BingoDAO bDAO = new BingoDAO();
         BingoVO bVO = new BingoVO();
         try {
@@ -33,14 +34,17 @@ public class Metodos {
             bVO.setFecha(bingo.getFecha());
             bVO.setIdJugador(bingo.getIdJugador());
             bVO.setTipo(1);
-            bVO.setBombo(bingo.getBombo().getListaBolas());
-            bVO.setCarton(arrayDeCarton(bingo));
+            bVO.setBombo(bingo.getBombo().toString());
+            bVO.setCarton(bingo.getCarton().toString());
             
             bDAO.insertBingo(bVO);
+            
         } catch (Exception ex) {
             System.out.println("No se ha podido guardar la partida");
             System.out.println(ex.getMessage());
         }
+        
+        return bVO.getPk();
     }
 
     public static ArrayList<Integer> arrayDeCarton(BingoAmericano bingo) {
@@ -56,10 +60,12 @@ public class Metodos {
 
     public static CartonAmericano cartonDeArray(ArrayList<Integer> listaNumeros) {
         CartonAmericano carton = new CartonAmericano();
+        int iterador = 0;
 
         for (int i = 0; i < CartonAmericano.COLUMNAS; i++) {
             for (int j = 0; j < CartonAmericano.FILAS; j++) {
-                    carton.getMatriz()[i][j] = listaNumeros.get(i + j);
+                    carton.getMatriz()[i][j] = listaNumeros.get(iterador);
+                    iterador++;
             }
         }
         return carton;
@@ -68,8 +74,18 @@ public class Metodos {
     public static int generarPK(){
         return (int) (Math.random()* 9999999 + 1);
     }
-    public static void mostrarIdGuardados() {
-
+   
+    public static ArrayList<Integer> arrayDeString(String cadena){
+        ArrayList<String> cadenaNumeros = new ArrayList<>(Arrays.asList(cadena.split(",")));
+        ArrayList<Integer> listaNumeros = new ArrayList<>();
+        
+        for (String aux : cadenaNumeros) {
+            listaNumeros.add(Integer.valueOf(aux));
+        }
+        
+        
+       return listaNumeros;
+       
     }
 
 }
