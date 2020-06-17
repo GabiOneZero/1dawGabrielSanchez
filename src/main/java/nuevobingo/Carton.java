@@ -23,7 +23,13 @@ public abstract class Carton {
 
     //=======================MÉTODOS=================================
     public abstract void generarCarton();
-
+    
+    
+    /**
+     * Cambia por un -1 el número tachado
+     * @param numero que acaba de salir en el bombo
+     * @return devuelve un Point con las coordenadas del número tachado
+     */
     public Point tacharNumero(int numero) {
         Point punto = null;
         
@@ -41,6 +47,11 @@ public abstract class Carton {
 
     }
 
+    /**
+     * Comprueba si todos los numeros de la fila han sido tachados
+     * @param numeroFila en la que nos encontramos
+     * @return devuelve true si efectivamente se canta línea
+     */
     public boolean esLinea(int numeroFila) {
 
        for (int i = 0; i < this.matriz[numeroFila].length; i++) {
@@ -52,6 +63,10 @@ public abstract class Carton {
 
     }
 
+    /**
+     * Se comprueba si todos los numeros han sido tachados
+     * @return devuelve true si se canta Bingo
+     */
     public boolean esBingo() {
         
         
@@ -75,6 +90,5 @@ public abstract class Carton {
     public void setMatriz(int[][] matriz) {
         this.matriz = matriz;
     }
-
-    //======================TO STRING================================
+    
 }

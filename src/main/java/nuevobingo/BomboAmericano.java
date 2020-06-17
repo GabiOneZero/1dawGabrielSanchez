@@ -28,6 +28,9 @@ public final class BomboAmericano extends Bombo {
     }
 
     //=======================MÉTODOS=================================
+    /**
+     * Llena el bombo con números consecutivos y luego los mezcla
+     */
     @Override
     public void llenarBombo() {
         ArrayList<Integer> lista = new ArrayList<>();

@@ -24,13 +24,25 @@ public abstract class Bombo {
         this.listaBolas = listaBolas;
     }
     //=======================MÉTODOS=================================
+    /**
+     * Elimina el primer numero del bombo, que al estar mezclado será aleatorio
+     * @return devuelve el numero eleiminado
+     */
     public int sacarBola() {
         
         return this.listaBolas.remove(0);
     }
 
+    /**
+     * Método abstracto para llenar el bombo según el numero de bolas que éste tenga
+     */
     public abstract void llenarBombo();
 
+    
+    /**
+     * Cuenta las bolas que aun no han salido
+     * @return devuelve el número de bolas restante en el bombo
+     */
     public int bolasDentro() {
         int numeroBolas = 0;
 
@@ -43,6 +55,10 @@ public abstract class Bombo {
         return numeroBolas;
     }
 
+    /**
+     * comprueba si el bombo está o no vacío
+     * @return devuelve true si lo está
+     */
     public boolean vacio() {
 
         return this.listaBolas.isEmpty();

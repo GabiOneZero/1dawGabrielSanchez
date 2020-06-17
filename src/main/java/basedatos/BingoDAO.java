@@ -25,12 +25,19 @@ import nuevobingo.*;
  */
 public class BingoDAO implements InterfaceBingo {
 
+    //======================ATRIBUTOS================================
     private Connection con = null;
 
+    //====================CONSTRUCTORES==============================
     public BingoDAO() {
         con = Conexion.getInstance();
     }
 
+    //=======================MÉTODOS=================================
+    /**
+     * Obtiene todos los bingos registrados en la base de datos
+     * @return devuelve todos los resultados en una lista
+     */
     @Override
     public List<BingoVO> getAll() {
         List<BingoVO> lista = new ArrayList<>();
@@ -43,7 +50,7 @@ public class BingoDAO implements InterfaceBingo {
             // Ahora construimos la lista, recorriendo el ResultSet y mapeando los datos
             while (res.next()) {
                 BingoVO bVO = new BingoVO();
-                // Recogemos los datos de la persona, guardamos en un objeto
+                // Recogemos los datos del bingo, guardamos en un objeto
                 bVO.setPk(res.getInt("pk"));
                 bVO.setFecha(res.getDate("fecha").toLocalDate());
                 bVO.setIdJugador(res.getString("idJugador"));
@@ -61,6 +68,11 @@ public class BingoDAO implements InterfaceBingo {
         return lista;
     }
 
+    /**
+     * Busca una partida registrada en la base de datos, buscándola por la PK
+     * @param pk o código de la partida guardada
+     * @return el bingo guardado seleccionado
+     */
     @Override
     public BingoAmericano findByPk(int pk) {
 
@@ -79,7 +91,7 @@ public class BingoDAO implements InterfaceBingo {
             // Nos posicionamos en el primer registro del Resultset. Sólo debe haber una fila
             // si existe esa pk
             if (res.next()) {
-                // Recogemos los datos de la persona, guardamos en un objeto
+                // Recogemos los datos del bingo, guardamos en un objeto
                 bingo.setId(String.valueOf(res.getInt("pk")));
                 bingo.setFecha(res.getDate("fecha").toLocalDate());
                 bingo.setIdJugador(res.getString("idJugador"));
@@ -95,6 +107,11 @@ public class BingoDAO implements InterfaceBingo {
         return null;
     }
 
+    /**
+     * Inserta un solo registro en la tabla bingo de nuestra base de datos
+     * @param bingo
+     * @return el número de filas total de registros
+     */
     @Override
     public int insertBingo(BingoVO bingo) {
 
@@ -127,6 +144,11 @@ public class BingoDAO implements InterfaceBingo {
 
     }
 
+    /**
+     * Inserta varios registros en la base de datos pero desde una lista
+     * @param lista
+     * @return el número de filas total
+     */
     @Override
     public int insertBingo(List<BingoVO> lista) {
         int numFilas = 0;
@@ -138,6 +160,10 @@ public class BingoDAO implements InterfaceBingo {
         return numFilas;
     }
 
+    /**
+     * Borra todos los registros existentes en la tabla bingo de la base de datos
+     * @return el número de filas que han sido borradas
+     */
     @Override
     public int deleteBingo() {
 
@@ -159,6 +185,11 @@ public class BingoDAO implements InterfaceBingo {
 
     }
 
+    /**
+     * Borra un solo registro de la tabla
+     * @param pk perteneciente al registro que queremos borrar
+     * @return el número de filas afectadas
+     */
     @Override
     public int deleteBingo(int pk) {
         int numFilas = 0;
@@ -178,6 +209,12 @@ public class BingoDAO implements InterfaceBingo {
         return numFilas;
     }
 
+    /**
+     * Actualiza un registro en la tabla bingo de nuestra base de datos
+     * @param pk del bingo en cuestión
+     * @param nuevosDatos los nuevos datos que queremos cambiar
+     * @return el numero de filas total
+     */
     @Override
     public int updateBingo(int pk, BingoVO nuevosDatos) {
 

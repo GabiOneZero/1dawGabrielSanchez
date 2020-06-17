@@ -30,6 +30,9 @@ public final class CartonAmericano extends Carton {
     }
 
     //=======================MÉTODOS=================================
+    /**
+     * Generamos un carton, generando las columnas una a una con numeros aleatorios
+     */
     @Override
     public void generarCarton() {
         int[] listaNumeros;
@@ -63,6 +66,12 @@ public final class CartonAmericano extends Carton {
 
     }
 
+    /**
+     * Genera una lista de números con la que llenaremos una sola columna
+     * @param minimo el valor mínimo que podrá tomar una casilla en la columna actual
+     * @param maximo valor máximo que podrá tener una casilla en la columna actual
+     * @return la lista de números para rellenar la columna
+     */
     public int[] generarColumna(int minimo, int maximo) {
         Random varRandom = new Random();
         ArrayList<Integer> listaNumeros = new ArrayList<>();
@@ -88,6 +97,11 @@ public final class CartonAmericano extends Carton {
         return columna;
     }
 
+    /**
+     * Rellena la matriz del cartón respetando el patrón establecido
+     * @param columna la columna en la que nos encontramos
+     * @param numeros la lista de numeros para la columna previamente generada
+     */
     public void rellenarMatriz(int columna, int[] numeros) {
 //
 //        Point point = new Point();
@@ -103,6 +117,10 @@ public final class CartonAmericano extends Carton {
 
     }
 
+    /**
+     * Establecemos de forma aleatoria uno de los patrones de números creados en el enum
+     * @return devuelve el patrón escogido
+     */
     public Patron establecerPatron() {
         Patron patron;
         int opcionPatron = (int) (Math.random() * 5 + 1);
@@ -130,6 +148,9 @@ public final class CartonAmericano extends Carton {
 
     }
 
+    /**
+     * método con que el que mostraremos por consola el cartón con un formato concreto
+     */
     public void mostrarCarton() {
         System.out.println("....................................................................");
         

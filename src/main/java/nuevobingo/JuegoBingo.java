@@ -24,17 +24,17 @@ public class JuegoBingo {
 //        
 //        System.out.println(bomboPrueba1);
 //        System.out.println(cartonPrueba1);
+
+//      ATRIBUTOS QUE NECESITAREMOS
         Scanner teclado = new Scanner(System.in);
         int opcion = 0;
         Boolean validInput = true;
         Boolean salir = false;
         BingoAmericano bingo = null;
-        String id;
-        String idJugador;
         int bolaSacada;
         int turno = 1;
-        char guardar;
 
+        //MENÚ PRINCIPAL
         do {
             do {
                 System.out.println("=========BINGO AMERICANO==========");
@@ -67,6 +67,7 @@ public class JuegoBingo {
 
             if (bingo != null) {
 
+                //TURNO
                 do {
 
                     //SACAR BOLA
@@ -108,6 +109,11 @@ public class JuegoBingo {
         } while (!salir);
     }
 
+    //MÉTODOS ESTÁTICOS
+    /**
+     * Crea un nuevo Bingo a partir de un nombre introducido
+     * @return devuelve el BingoAmericano que se crea
+     */
     public static BingoAmericano nuevaPartida() {
         Scanner teclado = new Scanner(System.in);
         System.out.println("Introduzca su nombre:");
@@ -121,6 +127,10 @@ public class JuegoBingo {
         return bingo;
     }
 
+    /**
+     * Carga una bingo guardado en la base de datos mediante un código introducido por teclado
+     * @return el bingo seleccionado, devuelve null si no hay ninguno
+     */
     public static BingoAmericano cargarPartida() {
         Scanner teclado = new Scanner(System.in);
         BingoDAO bDAO = new BingoDAO();
@@ -132,9 +142,9 @@ public class JuegoBingo {
             if (id.equals("0")) {
                 break;
             }
-        } while (Metodos.cargarPartida(Integer.valueOf(id)) == null);
+        } while (Metodos.buscarPartida(Integer.valueOf(id)) == null);
 
-        BingoAmericano bingo = Metodos.cargarPartida(Integer.valueOf(id));
+        BingoAmericano bingo = Metodos.buscarPartida(Integer.valueOf(id));
         bingo.getCarton().mostrarCarton();
 
         bDAO.deleteBingo(Integer.valueOf(id));

@@ -13,9 +13,11 @@ import java.time.LocalDate;
  */
 public final class BingoAmericano extends Bingo {
 
+    //======================ATRIBUTOS================================
     private CartonAmericano carton;
     public BomboAmericano bombo;
 
+    //====================CONSTRUCTORES==============================
     public BingoAmericano() {
     }
 
@@ -26,6 +28,7 @@ public final class BingoAmericano extends Bingo {
 
     }
 
+    //==================GETTERS & SETTERS============================
     public CartonAmericano getCarton() {
         return carton;
     }

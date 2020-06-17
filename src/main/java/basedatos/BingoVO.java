@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class BingoVO {
 
+    //======================ATRIBUTOS================================
     private int pk;
     private LocalDate fecha;
     private String idJugador;
@@ -23,6 +24,7 @@ public class BingoVO {
     private String bombo;
     private String carton;
 
+    //====================CONSTRUCTORES==============================
     public BingoVO(int pk, LocalDate fecha, String idJugador, int tipo, String bombo, String carton) {
         this.pk = pk;
         this.fecha = fecha;
@@ -36,6 +38,7 @@ public class BingoVO {
 
     }
 
+    //==================GETTERS & SETTERS============================
     public int getPk() {
         return pk;
     }
@@ -84,10 +87,10 @@ public class BingoVO {
         this.carton = carton;
     }
 
+    //======================TO STRING================================
     @Override
     public String toString() {
         return "BingoVO{" + "pk=" + pk + ", fecha=" + fecha + ", idJugador=" + idJugador + ", tipo=" + tipo + ", bombo=" + bombo + ", carton=" + carton + '}';
     }
-    
-    
+
 }
