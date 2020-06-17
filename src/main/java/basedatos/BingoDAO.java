@@ -50,7 +50,7 @@ public class BingoDAO implements InterfaceBingo {
                 bVO.setIdJugador(res.getString("jugador"));
                 bVO.setTipo(res.getInt("tipo"));
                 bVO.setBombo((ArrayList<Integer>) res.getArray("bombo"));
-                bVO.setBombo((ArrayList<Integer>) res.getArray("carton"));
+                bVO.setCarton((ArrayList<Integer>) res.getArray("carton"));
 
                 //Añadimos el objeto a la lista
                 lista.add(bVO);
@@ -116,8 +116,8 @@ public class BingoDAO implements InterfaceBingo {
                 prest.setDate(2, Date.valueOf(bingo.getFecha()));
                 prest.setString(3, bingo.getIdJugador());
                 prest.setInt(4, bingo.getTipo());
-                prest.setArray(5, (Array) bingo.getBombo());
-                prest.setArray(5, (Array) bingo.getCarton());
+                prest.setString(5, bingo.getBombo().toString());
+                prest.setString(6, bingo.getCarton().toString());
 
                 numFilas = prest.executeUpdate();
             } catch (SQLException ex) {
