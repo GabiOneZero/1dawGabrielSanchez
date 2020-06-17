@@ -64,7 +64,7 @@ public abstract class Bombo {
 
         for (int i = 0; i < listaBolas.size(); i++) {
                 cadenaNumeros += this.listaBolas.get(i);
-                System.out.print(", ");
+                cadenaNumeros += ",";
             
         }
         cadenaNumeros = cadenaNumeros.substring(0, cadenaNumeros.length() - 1);
