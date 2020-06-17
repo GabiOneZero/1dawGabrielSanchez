@@ -6,7 +6,6 @@
 package nuevobingo;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  *
@@ -61,7 +60,15 @@ public abstract class Bombo {
     //======================TO STRING================================
     @Override
     public String toString() {
-        return "Bombo{" + "listaBolas=" + listaBolas + '}';
+        String cadenaNumeros = "";
+
+        for (int i = 0; i < listaBolas.size(); i++) {
+                cadenaNumeros += this.listaBolas.get(i);
+                System.out.print(", ");
+            
+        }
+        cadenaNumeros = cadenaNumeros.substring(0, cadenaNumeros.length() - 1);
+        return cadenaNumeros;
     }
 
 }
