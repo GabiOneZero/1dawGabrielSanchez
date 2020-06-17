@@ -20,10 +20,10 @@ public class BingoVO {
     private LocalDate fecha;
     private String idJugador;
     private int tipo;
-    private ArrayList<Integer> bombo;
-    private ArrayList<Integer> carton;
+    private String bombo;
+    private String carton;
 
-    public BingoVO(int pk, LocalDate fecha, String idJugador, int tipo, ArrayList<Integer> bombo, ArrayList<Integer> carton) {
+    public BingoVO(int pk, LocalDate fecha, String idJugador, int tipo, String bombo, String carton) {
         this.pk = pk;
         this.fecha = fecha;
         this.idJugador = idJugador;
@@ -68,19 +68,19 @@ public class BingoVO {
         this.tipo = tipo;
     }
 
-    public ArrayList<Integer> getBombo() {
+    public String getBombo() {
         return bombo;
     }
 
-    public void setBombo(ArrayList<Integer> bombo) {
+    public void setBombo(String bombo) {
         this.bombo = bombo;
     }
 
-    public ArrayList<Integer> getCarton() {
+    public String getCarton() {
         return carton;
     }
 
-    public void setCarton(ArrayList<Integer> carton) {
+    public void setCarton(String carton) {
         this.carton = carton;
     }
 
