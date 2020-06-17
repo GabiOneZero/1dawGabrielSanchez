@@ -5,7 +5,6 @@
  */
 package basedatos;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -47,10 +46,10 @@ public class BingoDAO implements InterfaceBingo {
                 // Recogemos los datos de la persona, guardamos en un objeto
                 bVO.setPk(res.getInt("pk"));
                 bVO.setFecha(res.getDate("fecha").toLocalDate());
-                bVO.setIdJugador(res.getString("jugador"));
+                bVO.setIdJugador(res.getString("idJugador"));
                 bVO.setTipo(res.getInt("tipo"));
-                bVO.setBombo((ArrayList<Integer>) res.getArray("bombo"));
-                bVO.setCarton((ArrayList<Integer>) res.getArray("carton"));
+                bVO.setBombo(res.getString("bombo"));
+                bVO.setCarton(res.getString("carton"));
 
                 //Añadimos el objeto a la lista
                 lista.add(bVO);
@@ -83,9 +82,9 @@ public class BingoDAO implements InterfaceBingo {
                 // Recogemos los datos de la persona, guardamos en un objeto
                 bingo.setId(String.valueOf(res.getInt("pk")));
                 bingo.setFecha(res.getDate("fecha").toLocalDate());
-                bingo.setIdJugador(res.getString("jugador"));
-                bingo.setBombo((new BomboAmericano((ArrayList<Integer>) res.getArray("bombo"))));
-                bingo.setCarton(Metodos.cartonDeArray((ArrayList<Integer>) res.getArray("carton")));
+                bingo.setIdJugador(res.getString("idJugador"));
+                bingo.setBombo(new BomboAmericano(Metodos.arrayDeString(res.getString("bombo"))));
+                bingo.setCarton(Metodos.cartonDeArray(Metodos.arrayDeString(res.getString("carton"))));
                 return bingo;
             }
 
@@ -116,8 +115,8 @@ public class BingoDAO implements InterfaceBingo {
                 prest.setDate(2, Date.valueOf(bingo.getFecha()));
                 prest.setString(3, bingo.getIdJugador());
                 prest.setInt(4, bingo.getTipo());
-                prest.setString(5, bingo.getBombo().toString());
-                prest.setString(6, bingo.getCarton().toString());
+                prest.setString(5, bingo.getBombo());
+                prest.setString(6, bingo.getCarton());
 
                 numFilas = prest.executeUpdate();
             } catch (SQLException ex) {
@@ -198,8 +197,8 @@ public class BingoDAO implements InterfaceBingo {
                 prest.setDate(2, Date.valueOf(nuevosDatos.getFecha()));
                 prest.setString(3, nuevosDatos.getIdJugador());
                 prest.setInt(4, nuevosDatos.getTipo());
-                prest.setArray(5, (Array) nuevosDatos.getBombo());
-                prest.setArray(5, (Array) nuevosDatos.getCarton());
+                prest.setString(5, nuevosDatos.getBombo());
+                prest.setString(6, nuevosDatos.getCarton());
 
                 numFilas = prest.executeUpdate();
             } catch (SQLException ex) {
@@ -227,5 +226,4 @@ public class BingoDAO implements InterfaceBingo {
 //        }
 //        return res;
 //    }
-
 }
